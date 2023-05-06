@@ -62,7 +62,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "${{ secrets.MY_REPO_LINK }}"
+                      "text": "*Repository:* ${{ secrets.MY_REPO_LINK }}"
                     }
                   ]
                 },
