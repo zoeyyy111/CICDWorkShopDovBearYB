@@ -11,8 +11,8 @@ jobs:
     
     steps:
     #Check out Section
-    -name: Checkout
-      uses: actions/checkout@v3
+    -name: Checkout my code
+    uses: actions/checkout@v3
 
      #set up node
     -name: set node
