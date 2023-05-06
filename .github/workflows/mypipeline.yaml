@@ -50,7 +50,7 @@ jobs:
                   "fields": [
                     {
                       "type": "mrkdwn",
-                      "text": "*Name:* YAO BIN"
+                      "text": "*Name:* ${{ secrets.MY_NAME }} "
                     },
                     {
                       "type": "mrkdwn",
@@ -58,7 +58,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Matriculation:* A0127602N"
+                      "text": "*Matriculation:* ${{ MATRIC_NO }}"
                     },
                     {
                       "type": "mrkdwn",
