@@ -1,0 +1,92 @@
+name: ca workflow
+on: [push]
+branches:
+      - 'release/v*.*'
+
+jobs:
+  namedoesnotmatter:
+    runs-on: ubuntu-latest
+    
+    if: startsWith(github.ref, 'refs/heads/release/v') && !contains(github.event.head_commit.message, '#NORUN')
+    
+    steps:
+    #Check out Section
+    -name: Checkout soure
+      uses: actions/checkout@v3
+
+     #set up node
+      -name: set node
+      uses: actions/setup-node@v3
+        with:
+          node-version: 16
+            - run: npm ci
+            - run: npm test
+
+     #Deploy to Railway
+    -name:
+    uses: bervProject/railway-deploy@main
+    with:
+      railway_token: ${{ secrets.RAILWAY_TOKEN }}
+      service: "CICDWSdovbear"
+
+     #Slack notification
+     - name: Send GitHub Action trigger data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with: 
+        playload |
+          {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "GdipSA 56 CICD Submission block",
+                  "emoji": true
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Name:* YAO BIN"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Email:* e1112633@u.nus.edu"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Matriculation:* A0127602N"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Repository:*https://github.com/zoeyyy111/CICDWorkShopDovBearYB"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "${{ secrets.RAILWAY_URL }}"
+                },
+                "accessory": {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Go",
+                    "emoji": true
+                  },
+                  "value": "Go",
+                  "url": "${{ secrets.RAILWAY_URL }}",
+                  "action_id": "button-action"
+                }
+              }
+            ]
+          }
+
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
