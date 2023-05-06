@@ -16,22 +16,22 @@ jobs:
 
      #set up node
     -name: set node
-      uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    uses: actions/setup-node@v3
+    with:
+      node-version: 16
             
      #Deploy to Railway
     -name: send to railway
-      uses: bervProject/railway-deploy@main
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: "CICDWSdovbear"
+    uses: bervProject/railway-deploy@main
+    with:
+      railway_token: ${{ secrets.RAILWAY_TOKEN }}
+      service: "CICDWSdovbear"
 
      #Slack notification
-     - name: Send GitHub Action trigger data to Slack workflow
-      id: slack
-      uses: slackapi/slack-github-action@v1.23.0
-      with: 
+    -name: Send GitHub Action trigger data to Slack workflow
+    id: slack
+    uses: slackapi/slack-github-action@v1.23.0
+    with: 
         playload |
           {
             "blocks": [
@@ -85,6 +85,6 @@ jobs:
             ]
           }
 
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TEST_URL }}
-        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_TEST_URL }}
+      SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
