@@ -21,11 +21,11 @@ jobs:
           node-version: 16
             
      #Deploy to Railway
-    -name:
-    uses: bervProject/railway-deploy@main
-    with:
-      railway_token: ${{ secrets.RAILWAY_TOKEN }}
-      service: "CICDWSdovbear"
+    -name: send to railway
+      uses: bervProject/railway-deploy@main
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          service: "CICDWSdovbear"
 
      #Slack notification
      - name: Send GitHub Action trigger data to Slack workflow
