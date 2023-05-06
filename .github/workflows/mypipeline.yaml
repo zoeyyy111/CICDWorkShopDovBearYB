@@ -41,7 +41,7 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": "GdipSA 56 CICD Submission block",
+                    "text": "GdipSA 56 CI/CD Submission",
                     "emoji": true
                   }
                 },
@@ -54,7 +54,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Email:* e1112633@u.nus.edu"
+                      "text": "*Email:* ${{ secrets.MY_EMAIL_ADRESS }} "
                     },
                     {
                       "type": "mrkdwn",
