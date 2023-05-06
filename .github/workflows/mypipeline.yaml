@@ -30,7 +30,7 @@ jobs:
           service: "CICDWSdovbear"
 
       # Slack notification
-      - name: Send GitHub Action trigger data to Slack workflow
+      - name: Use GitHub Action to trigger Slack workflow submission
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
         with: 
