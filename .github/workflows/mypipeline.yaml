@@ -1,7 +1,9 @@
 name: cicd ca workflow
-on: [push]
-branches:
-  - 'release/v*.*'
+on:
+  push:
+    branches:
+      - 'release/v[0-99].[0-999]'
+
 
 jobs:
   namedoesnotmatter:
